@@ -3,319 +3,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Flashsale Vendor - TAPGO</title>
+    <title>Quản Lý Flashsale Vendor | TapGO Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
             --brand: #F48133;
-            --brand-dark: #E06B1F;
-            --bg-light: #FAFAFA;
+            --brand-light: #FFAC70;
+            --brand-dark: #D35400;
+            --glass: rgba(255, 255, 255, 0.7);
         }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-light);
+            background-color: #F8F9FB;
             color: #1A1D23;
         }
-        .glass {
+        .orange-gradient {
+            background: linear-gradient(135deg, #F48133 0%, #FF9D5C 100%);
+        }
+        .glass-card {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
         }
-        .orange-gradient {
-            background: linear-gradient(135deg, #F48133 0%, #FFB347 100%);
+        .premium-shadow {
+            box-shadow: 0 20px 50px rgba(244, 129, 51, 0.1);
         }
-        .card-shadow {
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        .btn-premium {
+            background: #111827;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .btn-hover {
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .btn-premium:hover {
+            background: var(--brand);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(244, 129, 51, 0.3);
         }
-        .btn-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(244, 129, 51, 0.2);
+        .tab-active {
+            color: var(--brand);
+            background: white;
+            box-shadow: 0 4px 15px rgba(244, 129, 51, 0.1);
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #CBD5E0; }
-
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(0.98); }
+        .progress-glow {
+            box-shadow: 0 0 15px rgba(244, 129, 51, 0.4);
         }
-        .animate-pulse-soft { animation: pulse-soft 3s infinite ease-in-out; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim { animation: float 6s infinite ease-in-out; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
     </style>
 </head>
-<body class="p-8">
-    <div class="max-w-[1400px] mx-auto">
-        <!-- Breadcrumb & Header -->
-        <div class="flex justify-between items-end mb-10">
-            <div>
-                <nav class="flex items-center gap-2 text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-3">
-                    <a href="vendor_website.html" class="hover:text-brand transition">Dashboard</a>
-                    <i class="fas fa-chevron-right text-[8px]"></i>
-                    <span class="text-gray-900">Flashsale Vendor</span>
-                </nav>
-                <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Quản Lý Flashsale Nội Bộ</h1>
-                <p class="text-gray-500 mt-2 text-lg font-medium">Tự chủ chương trình ưu đãi, bùng nổ doanh số chớp nhoáng.</p>
+<body class="bg-[#F8F9FB] min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="h-20 glass-card sticky top-0 z-50 px-10 flex items-center justify-between border-b border-gray-100">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-brand rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand/30">
+                    <i class="ph-fill ph-lightning"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter">TapGO <span class="text-brand">VENDOR</span></span>
             </div>
-            <button class="orange-gradient text-white px-8 py-4 rounded-2xl font-bold btn-hover flex items-center gap-3 shadow-xl shadow-orange-200">
-                <i class="fas fa-plus-circle text-xl"></i>
-                Tạo Flashsale Mới
+            <div class="h-6 w-px bg-gray-200"></div>
+            <h2 class="text-[14px] font-bold text-gray-400 uppercase tracking-[0.2em]">Quản Lý Flashsale Nội Bộ</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-100 text-sm font-bold shadow-sm">
+                <i class="ph-fill ph-calendar-blank text-brand"></i>
+                <span>Thứ Hai, 11 Tháng 5</span>
+            </div>
+            <button class="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:text-brand transition-all relative">
+                <i class="ph ph-bell text-xl"></i>
+                <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
             </button>
+            <div class="w-10 h-10 rounded-xl bg-gray-900 overflow-hidden border-2 border-white shadow-md cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=100" class="w-full h-full object-cover">
+            </div>
         </div>
+    </header>
 
-        <!-- Quick Stats Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-            <!-- Stat 1 -->
-            <div class="bg-white p-6 rounded-[2.5rem] card-shadow border border-gray-50 group hover:border-brand/20 transition-all">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-brand text-2xl border border-orange-100 group-hover:bg-brand group-hover:text-white transition-all duration-500"><i class="fas fa-bolt"></i></div>
-                    <span class="text-[11px] font-bold text-green-500 bg-green-50 px-2 py-1 rounded-lg">Active</span>
+    <main class="p-10 max-w-[1600px] mx-auto">
+        <!-- Hero Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            <div class="lg:col-span-8">
+                <div class="bg-gray-900 rounded-[3.5rem] p-12 relative overflow-hidden shadow-2xl group min-h-[350px] flex flex-col justify-center">
+                    <div class="absolute top-0 right-0 w-full h-full opacity-30">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[10s]">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+                    
+                    <div class="relative z-10">
+                        <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-brand text-white text-[10px] font-black rounded-full mb-6 uppercase tracking-[0.2em] shadow-lg shadow-brand/20">Market Insight</span>
+                        <h1 class="text-5xl font-extrabold text-white leading-tight mb-6">Tăng Trưởng <span class="text-brand">x2.5 Doanh Số</span><br>Bằng Flashsale Thông Minh</h1>
+                        <p class="text-gray-400 text-lg max-w-xl mb-10 leading-relaxed">Sử dụng hệ thống tự động cấu hình giá của TapGO AI để tối ưu hóa tỷ lệ chuyển đổi trong các khung giờ cao điểm.</p>
+                        
+                        <div class="flex gap-4">
+                            <button class="px-8 py-4 bg-brand text-white rounded-2xl font-black text-[15px] hover:bg-brand-dark transition-all flex items-center gap-3 shadow-xl shadow-brand/20">
+                                <i class="ph-bold ph-plus-circle text-xl"></i>
+                                Tạo Flashsale Ngay
+                            </button>
+                            <button class="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-2xl font-black text-[15px] border border-white/10 hover:bg-white/20 transition-all">
+                                Xem Hướng Dẫn
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Đang diễn ra</p>
-                <h3 class="text-3xl font-bold text-gray-900 mt-1">03 <span class="text-sm text-gray-400 font-medium">Chiến dịch</span></h3>
             </div>
-            <!-- Stat 2 -->
-            <div class="bg-white p-6 rounded-[2.5rem] card-shadow border border-gray-50 group hover:border-brand/20 transition-all">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 text-2xl border border-blue-100 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500"><i class="fas fa-shopping-cart"></i></div>
-                    <span class="text-[11px] font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-lg">+15% vs hôm qua</span>
-                </div>
-                <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Voucher đã bán</p>
-                <h3 class="text-3xl font-bold text-gray-900 mt-1">1,240 <span class="text-sm text-gray-400 font-medium">Mã</span></h3>
-            </div>
-            <!-- Stat 3 -->
-            <div class="bg-white p-6 rounded-[2.5rem] card-shadow border border-gray-50 group hover:border-brand/20 transition-all">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500 text-2xl border border-purple-100 group-hover:bg-purple-500 group-hover:text-white transition-all duration-500"><i class="fas fa-eye"></i></div>
-                    <span class="text-[11px] font-bold text-purple-500 bg-purple-50 px-2 py-1 rounded-lg">Hot Heat</span>
-                </div>
-                <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Lượt tiếp cận</p>
-                <h3 class="text-3xl font-bold text-gray-900 mt-1">45.2k <span class="text-sm text-gray-400 font-medium">User</span></h3>
-            </div>
-            <!-- Stat 4 -->
-            <div class="bg-gray-900 p-6 rounded-[2.5rem] card-shadow relative overflow-hidden group border border-gray-800">
-                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand/20 blur-3xl rounded-full animate-pulse-soft"></div>
-                <div class="relative z-10 h-full flex flex-col justify-between">
+
+            <div class="lg:col-span-4 grid grid-cols-1 gap-6">
+                <div class="glass-card rounded-[2.5rem] p-8 flex flex-col justify-between border-brand/10">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-brand text-3xl border border-orange-100">
+                            <i class="ph-fill ph-lightning"></i>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Hiệu quả tháng</p>
+                            <p class="text-2xl font-black text-gray-900 mt-1">+45.8%</p>
+                        </div>
+                    </div>
                     <div>
-                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">Doanh thu dự kiến</p>
-                        <h3 class="text-2xl font-bold text-white tracking-tight">85.000.000đ</h3>
+                        <h3 class="text-lg font-black text-gray-900 leading-tight">Flashsale đang hoạt động</h3>
+                        <div class="flex items-center gap-2 mt-4">
+                            <div class="flex -space-x-3">
+                                <img src="https://i.pravatar.cc/100?u=1" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                                <img src="https://i.pravatar.cc/100?u=2" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                                <img src="https://i.pravatar.cc/100?u=3" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold border-2 border-white text-gray-500">+12k</div>
+                            </div>
+                            <p class="text-[12px] text-gray-500 font-bold ml-2">Lượt xem thực tế</p>
+                        </div>
                     </div>
-                    <div class="mt-4 flex items-center justify-between">
-                        <span class="text-[10px] font-bold text-brand bg-brand/10 px-2 py-1 rounded-lg border border-brand/20 uppercase tracking-widest">TapGO AI Forecast</span>
-                        <i class="fas fa-chart-line text-brand"></i>
+                </div>
+
+                <div class="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm flex flex-col justify-between">
+                    <div class="flex justify-between items-center mb-6">
+                        <p class="text-[12px] font-black text-gray-400 uppercase tracking-widest">Trạng thái hệ thống</p>
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500 font-bold">API Sync</span>
+                            <span class="text-green-600 font-black">Ổn định</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500 font-bold">AI Processing</span>
+                            <span class="text-blue-600 font-black">98ms</span>
+                        </div>
+                        <div class="h-1.5 bg-gray-50 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand rounded-full" style="width: 85%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Main List Section -->
-        <div class="bg-white rounded-[3rem] card-shadow border border-gray-50 overflow-hidden mb-10">
-            <div class="px-10 py-8 border-b border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6 bg-gray-50/20">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-900">Danh sách chương trình</h2>
-                    <p class="text-gray-500 mt-1 font-medium">Theo dõi và tối ưu hóa hiệu quả từng khung giờ.</p>
-                </div>
-                <div class="flex bg-gray-100 p-1 rounded-2xl border border-gray-200">
-                    <button class="px-6 py-2.5 rounded-xl text-[13px] font-bold bg-white text-gray-900 shadow-sm">Đang chạy (3)</button>
-                    <button class="px-6 py-2.5 rounded-xl text-[13px] font-bold text-gray-500 hover:text-gray-900 transition">Sắp diễn ra (5)</button>
-                    <button class="px-6 py-2.5 rounded-xl text-[13px] font-bold text-gray-500 hover:text-gray-900 transition">Đã kết thúc</button>
-                </div>
+        <!-- Section 2: Management -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+            <div>
+                <h3 class="text-3xl font-black text-gray-900 tracking-tight">Chiến Dịch Của Bạn</h3>
+                <p class="text-gray-500 mt-2 font-medium">Theo dõi hiệu suất và điều chỉnh khung giờ kịp thời.</p>
             </div>
+            <div class="flex bg-gray-100/50 p-1.5 rounded-2xl border border-gray-200">
+                <button class="px-6 py-3 rounded-xl text-[13px] font-bold tab-active">Đang diễn ra (03)</button>
+                <button class="px-6 py-3 rounded-xl text-[13px] font-bold text-gray-500 hover:text-gray-900 transition">Sắp chạy</button>
+                <button class="px-6 py-3 rounded-xl text-[13px] font-bold text-gray-500 hover:text-gray-900 transition">Lịch sử</button>
+            </div>
+        </div>
 
-            <div class="p-4 overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] border-b border-gray-50">
-                            <th class="px-6 py-6">Thông tin Deal</th>
-                            <th class="px-6 py-6">Khung giờ</th>
-                            <th class="px-6 py-6">Ưu đãi Flash</th>
-                            <th class="px-6 py-6">Tiến độ bán</th>
-                            <th class="px-6 py-6">Trạng thái</th>
-                            <th class="px-6 py-6 text-right">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-50">
-                        <!-- Row 1 -->
-                        <tr class="group hover:bg-gray-50/50 transition-all duration-300">
-                            <td class="px-6 py-8">
-                                <div class="flex items-center gap-5">
-                                    <div class="w-20 h-20 rounded-[1.5rem] overflow-hidden border-2 border-gray-100 group-hover:border-brand/30 transition-all">
-                                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=200" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <p class="text-[15px] font-extrabold text-gray-900 group-hover:text-brand transition-colors">Combo Nướng Lẩu VIP</p>
-                                        <p class="text-[11px] text-gray-400 mt-1 font-bold"><i class="fas fa-tag mr-1 opacity-50"></i>Ẩm thực Nhật Bản</p>
-                                        <div class="flex gap-2 mt-2">
-                                            <span class="text-[9px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full uppercase tracking-tighter">Hot Pick</span>
-                                            <span class="text-[9px] font-bold bg-orange-50 text-brand px-2 py-0.5 rounded-full uppercase tracking-tighter">AI Recommended</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Main Campaign Table -->
+            <div class="lg:col-span-9">
+                <div class="bg-white rounded-[3rem] border border-gray-100 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50/50">
+                                <tr class="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                                    <th class="px-8 py-6">Deal / Sản phẩm</th>
+                                    <th class="px-8 py-6">Giá Flashsale</th>
+                                    <th class="px-8 py-6">Thời gian</th>
+                                    <th class="px-8 py-6">Tiến độ bán</th>
+                                    <th class="px-8 py-6 text-right">Tác vụ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-50">
+                                <!-- Row 1 -->
+                                <tr class="group hover:bg-orange-50/20 transition-all duration-300">
+                                    <td class="px-8 py-8">
+                                        <div class="flex items-center gap-5">
+                                            <div class="w-24 h-24 rounded-[2rem] overflow-hidden border-2 border-gray-100 shadow-sm group-hover:border-brand/30 transition-all transform group-hover:scale-105 duration-500">
+                                                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=200" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <h4 class="text-lg font-black text-gray-900 group-hover:text-brand transition-colors">Combo Nướng Lẩu VIP</h4>
+                                                <div class="flex items-center gap-2 mt-2">
+                                                    <span class="px-2 py-0.5 bg-orange-50 text-brand text-[9px] font-black rounded uppercase border border-brand/10">Bán chạy nhất</span>
+                                                    <span class="text-[12px] text-gray-400 font-bold"><i class="ph ph-hash mr-1"></i>VDR-001</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="space-y-1.5">
-                                    <div class="flex items-center gap-2 text-[13px] font-bold text-gray-700">
-                                        <i class="far fa-clock text-brand"></i>
-                                        Còn 01:24:55
-                                    </div>
-                                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Hôm nay, 17:00 - 19:00</p>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="space-y-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xl font-black text-red-500">199k</span>
-                                        <span class="text-[12px] text-gray-300 line-through font-bold">450k</span>
-                                    </div>
-                                    <span class="inline-block px-2 py-0.5 bg-red-50 text-red-500 text-[10px] font-bold rounded-md border border-red-100">-55% Giảm sâu</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="w-40">
-                                    <div class="flex justify-between items-end mb-2">
-                                        <p class="text-[13px] font-bold text-gray-900">82 <span class="text-[11px] text-gray-400 font-medium">/ 100</span></p>
-                                        <span class="text-[11px] font-black text-brand">82%</span>
-                                    </div>
-                                    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden shadow-inner">
-                                        <div class="h-full orange-gradient rounded-full" style="width: 82%"></div>
-                                    </div>
-                                    <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest italic text-right">Cháy hàng ⚡</p>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="flex flex-col gap-2">
-                                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-green-600 text-[11px] font-bold border border-green-100">
-                                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                        Đang chạy
-                                    </span>
-                                    <p class="text-[10px] text-gray-400 font-bold ml-2">Hiệu quả: <span class="text-green-500 font-black">XUẤT SẮC</span></p>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8 text-right">
-                                <div class="flex justify-end gap-2">
-                                    <button class="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-brand hover:text-white transition-all flex items-center justify-center"><i class="fas fa-chart-line text-sm"></i></button>
-                                    <button class="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-900 hover:text-white transition-all flex items-center justify-center"><i class="fas fa-ellipsis-h text-sm"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Row 2 -->
-                        <tr class="group hover:bg-gray-50/50 transition-all duration-300">
-                            <td class="px-6 py-8">
-                                <div class="flex items-center gap-5">
-                                    <div class="w-20 h-20 rounded-[1.5rem] overflow-hidden border-2 border-gray-100 group-hover:border-brand/30 transition-all">
-                                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=200" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <p class="text-[15px] font-extrabold text-gray-900 group-hover:text-brand transition-colors">Set Sashimi 3 Người</p>
-                                        <p class="text-[11px] text-gray-400 mt-1 font-bold"><i class="fas fa-tag mr-1 opacity-50"></i>Hải sản tươi sống</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="space-y-1.5">
-                                    <div class="flex items-center gap-2 text-[13px] font-bold text-gray-700">
-                                        <i class="far fa-clock text-brand"></i>
-                                        Còn 03:12:05
-                                    </div>
-                                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Hôm nay, 16:00 - 20:00</p>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="space-y-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xl font-black text-red-500">350k</span>
-                                        <span class="text-[12px] text-gray-300 line-through font-bold">720k</span>
-                                    </div>
-                                    <span class="inline-block px-2 py-0.5 bg-red-50 text-red-500 text-[10px] font-bold rounded-md border border-red-100">-51% Voucher độc quyền</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <div class="w-40">
-                                    <div class="flex justify-between items-end mb-2">
-                                        <p class="text-[13px] font-bold text-gray-900">12 <span class="text-[11px] text-gray-400 font-medium">/ 50</span></p>
-                                        <span class="text-[11px] font-black text-blue-500">24%</span>
-                                    </div>
-                                    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden shadow-inner">
-                                        <div class="h-full bg-blue-500 rounded-full" style="width: 24%"></div>
-                                    </div>
-                                    <p class="text-[10px] text-gray-400 font-bold mt-2 uppercase tracking-widest text-right">Đang ổn định</p>
-                                </div>
-                            </td>
-                            <td class="px-6 py-8">
-                                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-green-600 text-[11px] font-bold border border-green-100">
-                                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                    Đang chạy
-                                </span>
-                            </td>
-                            <td class="px-6 py-8 text-right">
-                                <div class="flex justify-end gap-2">
-                                    <button class="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-brand hover:text-white transition-all flex items-center justify-center"><i class="fas fa-chart-line text-sm"></i></button>
-                                    <button class="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-900 hover:text-white transition-all flex items-center justify-center"><i class="fas fa-ellipsis-h text-sm"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="space-y-1">
+                                            <p class="text-xl font-black text-red-500">199.000đ</p>
+                                            <p class="text-[12px] text-gray-300 line-through font-bold italic">450.000đ</p>
+                                            <span class="text-[10px] font-black text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-100">-55% OFF</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="space-y-2">
+                                            <div class="flex items-center gap-2 text-[13px] font-black text-gray-800">
+                                                <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-brand"><i class="ph-bold ph-timer"></i></div>
+                                                Còn 01:45:10
+                                            </div>
+                                            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider pl-10">Kết thúc lúc 21:00</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="w-48">
+                                            <div class="flex justify-between items-end mb-3">
+                                                <p class="text-[13px] font-black text-gray-900">84 <span class="text-gray-400 font-medium">/ 100</span></p>
+                                                <span class="text-[13px] font-black text-brand">84%</span>
+                                            </div>
+                                            <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden shadow-inner p-0.5">
+                                                <div class="h-full orange-gradient rounded-full progress-glow" style="width: 84%"></div>
+                                            </div>
+                                            <div class="flex items-center gap-1 mt-3">
+                                                <i class="ph-fill ph-fire text-red-500 text-[10px]"></i>
+                                                <p class="text-[10px] text-red-500 font-black uppercase tracking-widest">Sắp cháy hàng</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8 text-right">
+                                        <div class="flex justify-end gap-2">
+                                            <button class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-400 hover:bg-brand hover:text-white transition-all flex items-center justify-center shadow-sm group/btn">
+                                                <i class="ph-bold ph-chart-line-up text-xl group-hover/btn:scale-110 transition-transform"></i>
+                                            </button>
+                                            <button class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-400 hover:bg-gray-900 hover:text-white transition-all flex items-center justify-center shadow-sm">
+                                                <i class="ph-bold ph-dots-three-outline text-xl"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
 
-        <!-- AI Recommendation Section -->
-        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3.5rem] p-12 relative overflow-hidden card-shadow">
-            <div class="absolute top-0 right-0 p-20 opacity-10">
-                <i class="fas fa-brain text-[120px] text-brand"></i>
-            </div>
-            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-7">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="px-4 py-1 bg-brand/20 text-brand text-[10px] font-black rounded-full border border-brand/30 uppercase tracking-[0.2em]">Smart Intelligence</span>
-                        <div class="h-px w-20 bg-gray-700"></div>
-                    </div>
-                    <h2 class="text-4xl font-bold text-white leading-tight">Dự báo hiệu quả cho <br>ngày mai (12/05)</h2>
-                    <p class="text-gray-400 mt-6 text-lg leading-relaxed">Hệ thống AI phân tích dữ liệu mua sắm của User TapGO tại khu vực của bạn. <span class="text-white font-bold">Thứ 7 tuần này</span> dự kiến lượng khách sẽ tăng đột biến <span class="text-brand font-black">40%</span> vào khung giờ tối.</p>
-                    <div class="flex gap-4 mt-10">
-                        <div class="bg-white/5 border border-white/10 p-5 rounded-3xl backdrop-blur-xl">
-                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Khung giờ vàng</p>
-                            <p class="text-xl font-bold text-white">19:30 - 21:30</p>
-                        </div>
-                        <div class="bg-white/5 border border-white/10 p-5 rounded-3xl backdrop-blur-xl">
-                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Mức giảm đề xuất</p>
-                            <p class="text-xl font-bold text-brand">40% - 50%</p>
-                        </div>
+                                <!-- Row 2 -->
+                                <tr class="group hover:bg-orange-50/20 transition-all duration-300">
+                                    <td class="px-8 py-8">
+                                        <div class="flex items-center gap-5">
+                                            <div class="w-24 h-24 rounded-[2rem] overflow-hidden border-2 border-gray-100 shadow-sm group-hover:border-brand/30 transition-all transform group-hover:scale-105 duration-500">
+                                                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=200" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <h4 class="text-lg font-black text-gray-900 group-hover:text-brand transition-colors">Set Sashimi 3 Người</h4>
+                                                <div class="flex items-center gap-2 mt-2">
+                                                    <span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-black rounded uppercase border border-blue-100">Độc quyền App</span>
+                                                    <span class="text-[12px] text-gray-400 font-bold"><i class="ph ph-hash mr-1"></i>VDR-005</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="space-y-1">
+                                            <p class="text-xl font-black text-red-500">350.000đ</p>
+                                            <p class="text-[12px] text-gray-300 line-through font-bold italic">720.000đ</p>
+                                            <span class="text-[10px] font-black text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-100">-51% OFF</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="space-y-2">
+                                            <div class="flex items-center gap-2 text-[13px] font-black text-gray-800">
+                                                <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600"><i class="ph-bold ph-timer"></i></div>
+                                                Còn 03:22:15
+                                            </div>
+                                            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider pl-10">Kết thúc lúc 22:30</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="w-48">
+                                            <div class="flex justify-between items-end mb-3">
+                                                <p class="text-[13px] font-black text-gray-900">15 <span class="text-gray-400 font-medium">/ 50</span></p>
+                                                <span class="text-[13px] font-black text-blue-600">30%</span>
+                                            </div>
+                                            <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden shadow-inner p-0.5">
+                                                <div class="h-full bg-blue-500 rounded-full" style="width: 30%"></div>
+                                            </div>
+                                            <div class="flex items-center gap-1 mt-3">
+                                                <i class="ph-fill ph-check-circle text-green-500 text-[10px]"></i>
+                                                <p class="text-[10px] text-green-500 font-black uppercase tracking-widest">Đang ổn định</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8 text-right">
+                                        <div class="flex justify-end gap-2">
+                                            <button class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-400 hover:bg-brand hover:text-white transition-all flex items-center justify-center shadow-sm group/btn">
+                                                <i class="ph-bold ph-chart-line-up text-xl group-hover/btn:scale-110 transition-transform"></i>
+                                            </button>
+                                            <button class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-400 hover:bg-gray-900 hover:text-white transition-all flex items-center justify-center shadow-sm">
+                                                <i class="ph-bold ph-dots-three-outline text-xl"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="lg:col-span-5 flex flex-col gap-4">
-                    <div class="p-6 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl hover:bg-white/10 transition-all cursor-pointer group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-white text-xl shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform"><i class="fas fa-magic"></i></div>
-                            <div>
-                                <h4 class="text-white font-bold">Tự động cấu hình Flashsale</h4>
-                                <p class="text-gray-400 text-sm mt-1">AI sẽ tự chọn Deal và giá tốt nhất để tối ưu doanh số.</p>
+            </div>
+
+            <!-- Right: AI Smart Settings -->
+            <div class="lg:col-span-3 space-y-8">
+                <!-- AI Smart Tool -->
+                <div class="bg-gradient-to-br from-gray-900 to-black rounded-[3rem] p-8 card-shadow border border-white/5 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand/20 blur-[60px] animate-pulse"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-brand text-2xl border border-white/10 shadow-inner">
+                                <i class="ph-fill ph-brain"></i>
+                            </div>
+                            <h4 class="text-white font-black text-lg">TapGO <span class="text-brand">AI</span> Smart</h4>
+                        </div>
+                        <p class="text-gray-400 text-[13px] leading-relaxed mb-8">Hệ thống đang đề xuất cấu hình tối ưu cho khung giờ <span class="text-white font-bold italic">20:00 - 22:00</span> hôm nay.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/10 group-hover:bg-white/10 transition-all">
+                                <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Dự báo chuyển đổi</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-black text-white">+180%</span>
+                                    <i class="ph-bold ph-trend-up text-brand"></i>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded-2xl border border-white/10 group-hover:bg-white/10 transition-all">
+                                <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Mức giảm đề xuất</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-black text-white">45% - 50%</span>
+                                    <i class="ph-bold ph-tag-chevron text-brand"></i>
+                                </div>
                             </div>
                         </div>
+                        
+                        <button class="w-full mt-8 py-4 bg-brand text-white rounded-2xl font-black text-[14px] shadow-xl shadow-brand/30 hover:scale-105 transition-all">
+                            Áp Dụng Cấu Hình AI
+                        </button>
                     </div>
-                    <div class="p-6 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl hover:bg-white/10 transition-all cursor-pointer group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center text-white text-xl shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform"><i class="fas fa-bullhorn"></i></div>
-                            <div>
-                                <h4 class="text-white font-bold">Đẩy tin ưu tiên VIP</h4>
-                                <p class="text-gray-400 text-sm mt-1">Xuất hiện ngay tại trang chủ App khi User ở bán kính 3km.</p>
-                            </div>
+                </div>
+
+                <!-- Slot Calendar -->
+                <div class="bg-white rounded-[3rem] p-8 border border-gray-100 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="text-lg font-black text-gray-900">Khung Giờ Vàng</h4>
+                        <i class="ph ph-calendar text-brand text-xl"></i>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-orange-50 rounded-2xl border border-orange-100">
+                            <div><p class="text-[13px] font-black text-gray-900">17:00 - 19:00</p><p class="text-[10px] text-brand font-bold uppercase tracking-widest">Đang chạy</p></div>
+                            <div class="w-2 h-2 bg-brand rounded-full animate-pulse"></div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 opacity-60">
+                            <div><p class="text-[13px] font-black text-gray-800">19:00 - 21:00</p><p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Sắp diễn ra</p></div>
+                            <i class="ph ph-lock-key text-gray-400"></i>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 opacity-60">
+                            <div><p class="text-[13px] font-black text-gray-800">21:00 - 23:00</p><p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Sắp diễn ra</p></div>
+                            <i class="ph ph-lock-key text-gray-400"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Background Elements -->
-    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-40">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-200 rounded-full blur-[150px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-[150px]"></div>
-    </div>
+    <div class="fixed top-0 right-0 w-[50%] h-[50%] bg-orange-100 rounded-full blur-[150px] opacity-30 -z-10"></div>
+    <div class="fixed bottom-0 left-0 w-[40%] h-[40%] bg-blue-50 rounded-full blur-[120px] opacity-20 -z-10"></div>
+
 </body>
 </html>
