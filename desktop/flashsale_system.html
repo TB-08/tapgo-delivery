@@ -3,222 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashsale Hệ Thống - TAPGO Campaigns</title>
+    <title>Hệ Thống Chiến Dịch TapGO | Partner Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
             --brand: #F48133;
-            --brand-dark: #E06B1F;
-            --bg-light: #FAFAFA;
             --purple: #8B5CF6;
+            --indigo: #6366F1;
         }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-light);
-            color: #1A1D23;
+            background-color: #0F172A;
+            color: #FFFFFF;
             overflow-x: hidden;
         }
-        .card-shadow {
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        .mesh-gradient {
+            background-color: #0F172A;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(244, 129, 51, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.15) 0px, transparent 50%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
         .campaign-card {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .campaign-card:hover {
-            transform: translateY(-12px) scale(1.01);
-            box-shadow: 0 30px 70px rgba(244, 129, 51, 0.15);
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--brand);
+            box-shadow: 0 30px 60px rgba(244, 129, 51, 0.15);
         }
-        .glow-orange {
-            box-shadow: 0 0 30px rgba(244, 129, 51, 0.4);
+        .glow-text {
+            text-shadow: 0 0 20px rgba(244, 129, 51, 0.5);
         }
-        .gradient-mesh {
-            background-color: #0f172a;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(244, 129, 51, 0.2) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.2) 0px, transparent 50%);
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(244, 129, 51, 0.3);
+            transition: all 0.3s ease;
         }
-        /* Custom progress bar */
-        .progress-bar-glow {
-            box-shadow: 0 0 10px rgba(244, 129, 51, 0.5);
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(244, 129, 51, 0.5);
+            transform: scale(1.02);
         }
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .rotate-slow { animation: rotate-slow 20s linear infinite; }
     </style>
 </head>
-<body class="p-8">
-    <div class="max-w-[1400px] mx-auto">
-        <!-- Header Section -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
-            <div>
-                <nav class="flex items-center gap-2 text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-3">
-                    <a href="vendor_website.html" class="hover:text-brand transition">Dashboard</a>
-                    <i class="fas fa-chevron-right text-[8px]"></i>
-                    <span class="text-gray-900">Flashsale Hệ Thống</span>
-                </nav>
-                <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Hệ Thống Chiến Dịch TapGO</h1>
-                <p class="text-gray-500 mt-2 text-lg font-medium">Đồng hành cùng các chiến dịch lớn, tiếp cận triệu khách hàng tiềm năng.</p>
-            </div>
-            <div class="flex gap-4">
-                <div class="bg-white px-6 py-3 rounded-2xl border border-gray-100 card-shadow flex items-center gap-4">
-                    <div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 border border-purple-100"><i class="fas fa-medal"></i></div>
-                    <div>
-                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Quyền lợi VIP</p>
-                        <p class="text-[15px] font-extrabold text-gray-900">Đẩy tin Top trang chủ</p>
-                    </div>
+<body class="mesh-gradient min-h-screen">
+
+    <!-- Top Navigation -->
+    <header class="h-24 px-12 flex items-center justify-between border-b border-white/5 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-12">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-brand rounded-2xl flex items-center justify-center text-white text-2xl shadow-lg shadow-brand/40">
+                    <i class="ph-fill ph-planet"></i>
                 </div>
+                <span class="text-2xl font-black tracking-tighter uppercase">TapGO <span class="text-brand">Partner</span></span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-400">
+                <a href="vendor_website.html" class="hover:text-white transition">Hồ sơ</a>
+                <a href="#" class="text-white border-b-2 border-brand pb-1">Chiến dịch</a>
+                <a href="#" class="hover:text-white transition">Phần thưởng</a>
+                <a href="#" class="hover:text-white transition">Cộng đồng</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="text-right hidden sm:block">
+                <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Hạng của bạn</p>
+                <p class="text-[14px] font-black text-brand uppercase tracking-tighter">Gold Partner ✨</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 p-1">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=100" class="w-full h-full object-cover rounded-xl">
             </div>
         </div>
+    </header>
 
-        <!-- Featured Mega Campaign -->
-        <div class="gradient-mesh rounded-[4rem] p-12 md:p-20 relative overflow-hidden mb-16 group shadow-2xl">
-            <div class="absolute top-0 right-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c170db06?q=80&w=1200" class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-[3s]">
+    <main class="p-12 max-w-[1500px] mx-auto">
+        <!-- Hero Section: Futuristic Campaign Board -->
+        <div class="relative rounded-[4rem] overflow-hidden min-h-[500px] flex items-center p-16 mb-20">
+            <!-- Background Visuals -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c170db06?q=80&w=1400" class="w-full h-full object-cover opacity-20">
+                <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/80 to-transparent"></div>
             </div>
-            <!-- Glass Decorative -->
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand/30 rounded-full blur-[120px]"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px]"></div>
+            
+            <!-- Animated Circles -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand/10 rounded-full blur-[100px] rotate-slow"></div>
+            <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-[100px]"></div>
 
-            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-brand text-white text-[11px] font-black rounded-full mb-8 shadow-xl glow-orange uppercase tracking-[0.2em] animate-pulse">Mega Event 2026</span>
-                    <h2 class="text-5xl md:text-6xl font-black text-white leading-[1.1] mb-6">Mùa Hè Rực Rỡ <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-yellow-400">TapGO Đà Nẵng</span></h2>
-                    <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-10 opacity-90">Chiến dịch lớn nhất năm dành cho các đối tác tại khu vực Đà Nẵng. Tiếp cận hơn <span class="text-white font-bold">500,000 khách du lịch</span> trong tháng 6 này.</p>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand/20 border border-brand/30 rounded-full mb-8">
+                        <span class="w-2 h-2 bg-brand rounded-full animate-ping"></span>
+                        <span class="text-[10px] font-black text-brand uppercase tracking-[0.2em]">Live Registration</span>
+                    </div>
+                    <h1 class="text-6xl font-black text-white leading-[1.1] mb-8">Chiến Dịch <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-yellow-400 glow-text">Mùa Hè Rực Rỡ</span> 2026</h1>
+                    <p class="text-gray-400 text-xl leading-relaxed max-w-lg mb-10">Bùng nổ doanh thu với chuỗi sự kiện du lịch lớn nhất năm. Tiếp cận hơn <span class="text-white font-bold">1 triệu lượt du khách</span> tại khu vực Miền Trung.</p>
                     
-                    <div class="flex flex-col sm:flex-row gap-5">
-                        <button class="px-10 py-5 bg-brand text-white rounded-3xl font-black text-lg shadow-2xl shadow-brand/40 hover:bg-white hover:text-brand transition-all duration-500 group/btn flex items-center justify-center gap-3">
-                            Tham gia ngay 
-                            <i class="fas fa-arrow-right group-hover/btn:translate-x-2 transition-transform"></i>
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <button class="px-12 py-5 bg-brand text-white rounded-[2rem] font-black text-lg btn-glow flex items-center justify-center gap-3">
+                            Đăng Ký Ngay
+                            <i class="ph-bold ph-arrow-right"></i>
                         </button>
-                        <div class="flex items-center gap-4 px-6 py-4 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/10">
-                            <div class="flex -space-x-4">
-                                <img src="https://i.pravatar.cc/100?u=1" class="w-10 h-10 rounded-full border-2 border-white/20">
-                                <img src="https://i.pravatar.cc/100?u=2" class="w-10 h-10 rounded-full border-2 border-white/20">
-                                <img src="https://i.pravatar.cc/100?u=3" class="w-10 h-10 rounded-full border-2 border-white/20">
-                            </div>
-                            <p class="text-white font-bold text-sm">842+ Đối tác đã tham gia</p>
-                        </div>
+                        <button class="px-12 py-5 bg-white/5 backdrop-blur-md text-white rounded-[2rem] font-black text-lg border border-white/10 hover:bg-white/10 transition-all">
+                            Tìm hiểu thêm
+                        </button>
                     </div>
                 </div>
-                <div class="hidden lg:block relative">
-                    <div class="bg-white/5 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem] shadow-2xl relative z-10">
-                        <div class="space-y-8">
-                            <div class="flex justify-between items-center text-white pb-6 border-b border-white/10">
-                                <p class="text-[12px] font-bold uppercase tracking-widest opacity-60">Cơ cấu giải thưởng</p>
-                                <i class="fas fa-trophy text-yellow-400 text-xl"></i>
-                            </div>
-                            <div class="grid grid-cols-1 gap-6">
-                                <div class="flex items-center gap-5">
-                                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand text-2xl border border-white/10"><i class="fas fa-bullhorn"></i></div>
-                                    <div><h4 class="text-white font-bold text-lg">Banner App VIP</h4><p class="text-gray-400 text-sm">Hiển thị đầu trang chủ App 7 ngày.</p></div>
+
+                <div class="hidden lg:block">
+                    <div class="glass-panel p-10 rounded-[3rem] relative">
+                        <div class="space-y-10">
+                            <div class="flex items-start gap-6">
+                                <div class="w-16 h-16 bg-brand/20 rounded-2xl flex items-center justify-center text-brand text-3xl border border-brand/30 shadow-inner">
+                                    <i class="ph-fill ph-megaphone"></i>
                                 </div>
-                                <div class="flex items-center gap-5">
-                                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-blue-400 text-2xl border border-white/10"><i class="fas fa-coins"></i></div>
-                                    <div><h4 class="text-white font-bold text-lg">Trợ giá 20.000 TC</h4><p class="text-gray-400 text-sm">TapGO hỗ trợ bù giá trực tiếp trên mỗi deal.</p></div>
+                                <div>
+                                    <h4 class="text-xl font-black text-white">Quảng Bá VIP</h4>
+                                    <p class="text-gray-500 text-sm mt-1">Xuất hiện tại Banner nổi bật trang chủ App & Map 24/7.</p>
                                 </div>
                             </div>
-                            <div class="pt-4">
-                                <div class="flex justify-between text-white text-[12px] font-bold mb-2"><span>Số lượng đăng ký còn lại</span><span>18 / 50</span></div>
-                                <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden p-0.5 border border-white/10"><div class="h-full bg-brand rounded-full progress-bar-glow" style="width: 36%"></div></div>
+                            <div class="flex items-start gap-6">
+                                <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 text-3xl border border-blue-500/30 shadow-inner">
+                                    <i class="ph-fill ph-currency-circle-dollar"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-black text-white">Trợ Giá Trực Tiếp</h4>
+                                    <p class="text-gray-500 text-sm mt-1">TapGO hỗ trợ bù 30% giá trị voucher cho khách hàng.</p>
+                                </div>
+                            </div>
+                            <div class="pt-6 border-t border-white/5">
+                                <div class="flex justify-between text-[12px] font-black text-gray-500 uppercase tracking-widest mb-3">
+                                    <span>Tỷ lệ lấp đầy đối tác</span>
+                                    <span class="text-brand">85% Full</span>
+                                </div>
+                                <div class="h-3 bg-white/5 rounded-full overflow-hidden p-0.5">
+                                    <div class="h-full bg-gradient-to-r from-brand to-orange-400 rounded-full" style="width: 85%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Decorative Floating Element -->
-                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-purple-500 rounded-full blur-[80px] animate-pulse"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Section: Opportunities -->
-        <h3 class="text-2xl font-bold text-gray-900 mb-10 flex items-center gap-3">
-            <i class="fas fa-star text-brand"></i>
-            Chiến dịch đang mở đăng ký
-        </h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-            <!-- Card 1 -->
-            <div class="bg-white rounded-[3rem] border border-gray-100 campaign-card relative overflow-hidden flex flex-col h-full">
-                <div class="p-10 flex-1">
-                    <div class="flex justify-between items-start mb-8">
-                        <div class="w-16 h-16 bg-red-50 rounded-[1.5rem] flex items-center justify-center text-red-500 text-3xl border border-red-100 shadow-sm"><i class="fas fa-fire-alt"></i></div>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-500 text-[10px] font-black rounded-full uppercase tracking-widest">Ẩm thực</span>
-                    </div>
-                    <h4 class="text-2xl font-extrabold text-gray-900 leading-tight mb-4 group-hover:text-brand transition-colors">Bữa Trưa 1K</h4>
-                    <p class="text-gray-500 text-[15px] leading-relaxed mb-8">Tăng trưởng khách hàng mới đột phá bằng cách tham gia chuỗi deal 1K được TapGO tài trợ 100% chi phí marketing.</p>
-                    
-                    <div class="space-y-4 pt-6 border-t border-gray-50">
-                        <div class="flex justify-between text-[13px]"><span class="text-gray-400 font-bold uppercase tracking-wider">Thời gian:</span><span class="text-gray-900 font-extrabold">20/05 - 30/05</span></div>
-                        <div class="flex justify-between text-[13px]"><span class="text-gray-400 font-bold uppercase tracking-wider">Trợ giá:</span><span class="text-green-600 font-extrabold">Lên đến 50k / Deal</span></div>
-                    </div>
-                </div>
-                <div class="px-10 py-8 bg-gray-50/50 border-t border-gray-100 mt-auto">
-                    <button class="w-full py-4 bg-gray-900 text-white rounded-2xl font-black text-[14px] hover:bg-brand shadow-xl shadow-gray-200 transition-all">Đăng ký tham gia</button>
-                </div>
+        <!-- Section: Active Opportunities -->
+        <div class="flex justify-between items-center mb-12">
+            <div>
+                <h3 class="text-4xl font-black text-white tracking-tight">Cơ Hội Phóng Khoán</h3>
+                <p class="text-gray-500 mt-2 text-lg">Chọn chiến dịch phù hợp nhất với ngành hàng của bạn.</p>
             </div>
-
-            <!-- Card 2 -->
-            <div class="bg-white rounded-[3rem] border border-gray-100 campaign-card relative overflow-hidden flex flex-col h-full border-brand/20 shadow-xl shadow-brand/5">
-                <div class="p-10 flex-1">
-                    <div class="flex justify-between items-start mb-8">
-                        <div class="w-16 h-16 bg-purple-50 rounded-[1.5rem] flex items-center justify-center text-purple-500 text-3xl border border-purple-100 shadow-sm"><i class="fas fa-bolt"></i></div>
-                        <span class="px-3 py-1 bg-purple-100 text-purple-600 text-[10px] font-black rounded-full uppercase tracking-widest">Toàn quốc</span>
-                    </div>
-                    <h4 class="text-2xl font-extrabold text-gray-900 leading-tight mb-4">Happy Weekend</h4>
-                    <p class="text-gray-500 text-[15px] leading-relaxed mb-8">Cộng hưởng cùng 1,000+ thương hiệu lớn trong ngày hội mua sắm cuối tuần. Nhận hỗ trợ tag "TOP DEAL" trên bản đồ App.</p>
-                    
-                    <div class="space-y-4 pt-6 border-t border-gray-50">
-                        <div class="flex justify-between text-[13px]"><span class="text-gray-400 font-bold uppercase tracking-wider">Thời gian:</span><span class="text-gray-900 font-extrabold">Mọi Thứ 7 & CN</span></div>
-                        <div class="flex justify-between text-[13px]"><span class="text-gray-400 font-bold uppercase tracking-wider">Tiếp cận:</span><span class="text-brand font-extrabold">2.5M User / Ngày</span></div>
-                    </div>
-                </div>
-                <div class="px-10 py-8 bg-brand/5 border-t border-brand/10 mt-auto">
-                    <button class="w-full py-4 bg-brand text-white rounded-2xl font-black text-[14px] shadow-xl shadow-brand/20 hover:bg-brand-dark transition-all">Đã đăng ký (Chờ duyệt)</button>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-white rounded-[3rem] border border-gray-100 campaign-card relative overflow-hidden flex flex-col h-full opacity-60">
-                <div class="p-10 flex-1">
-                    <div class="flex justify-between items-start mb-8">
-                        <div class="w-16 h-16 bg-blue-50 rounded-[1.5rem] flex items-center justify-center text-blue-500 text-3xl border border-blue-100 shadow-sm"><i class="fas fa-gift"></i></div>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-500 text-[10px] font-black rounded-full uppercase tracking-widest">E-Gift</span>
-                    </div>
-                    <h4 class="text-2xl font-extrabold text-gray-900 leading-tight mb-4">Lễ Hội Quà Tặng</h4>
-                    <p class="text-gray-500 text-[15px] leading-relaxed mb-8">Chiến dịch thúc đẩy mua sắm E-Gift cho nhóm khách hàng doanh nghiệp. Phù hợp cho các chuỗi nhà hàng, spa cao cấp.</p>
-                </div>
-                <div class="px-10 py-8 bg-gray-50/50 border-t border-gray-100 mt-auto">
-                    <button class="w-full py-4 bg-gray-200 text-gray-400 rounded-2xl font-black text-[14px] cursor-not-allowed">Hết suất đăng ký</button>
-                </div>
+            <div class="flex gap-3">
+                <button class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all"><i class="ph ph-sliders-horizontal text-2xl"></i></button>
             </div>
         </div>
 
-        <!-- Section: Leaderboard/Community -->
-        <div class="bg-white rounded-[3.5rem] card-shadow border border-gray-50 p-12 mb-16 flex flex-col md:flex-row items-center gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Campaign Card 1 -->
+            <div class="campaign-card rounded-[3.5rem] p-10 flex flex-col h-full relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <i class="ph ph-bowl-food text-8xl"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-20 h-20 bg-orange-500/10 rounded-[2rem] flex items-center justify-center text-brand text-4xl border border-brand/20 shadow-inner">
+                            <i class="ph-fill ph-fire"></i>
+                        </div>
+                        <span class="px-4 py-1.5 bg-brand/20 text-brand text-[10px] font-black rounded-full uppercase tracking-widest border border-brand/20">Hot Choice</span>
+                    </div>
+                    <h4 class="text-2xl font-black text-white mb-4">Bữa Trưa 1K</h4>
+                    <p class="text-gray-500 leading-relaxed mb-10">Chiến dịch thu hút khách hàng mới mạnh mẽ nhất. TapGO hỗ trợ 100% chi phí hiển thị và trợ giá voucher cho người dùng.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-8 border-t border-white/5">
+                        <div class="p-4 bg-white/5 rounded-2xl">
+                            <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1">Thời gian</p>
+                            <p class="text-sm font-bold text-white">20/05 - 20/06</p>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl">
+                            <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-1">Mục tiêu</p>
+                            <p class="text-sm font-bold text-white">10.000+ User</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full mt-10 py-5 bg-white text-gray-950 rounded-[1.5rem] font-black text-[15px] hover:bg-brand hover:text-white transition-all shadow-xl">Đăng Ký Tham Gia</button>
+            </div>
+
+            <!-- Campaign Card 2 -->
+            <div class="campaign-card rounded-[3.5rem] p-10 flex flex-col h-full relative overflow-hidden border-brand/30 bg-brand/5 shadow-2xl shadow-brand/10">
+                <div class="absolute top-0 right-0 p-8 opacity-5">
+                    <i class="ph ph-shopping-bag text-8xl text-brand"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-20 h-20 bg-brand/20 rounded-[2rem] flex items-center justify-center text-brand text-4xl border border-brand/30 shadow-inner animate-pulse">
+                            <i class="ph-fill ph-lightning"></i>
+                        </div>
+                        <span class="px-4 py-1.5 bg-brand text-white text-[10px] font-black rounded-full uppercase tracking-widest shadow-lg shadow-brand/40">Highly Active</span>
+                    </div>
+                    <h4 class="text-2xl font-black text-white mb-4">Happy Weekend 50%</h4>
+                    <p class="text-gray-400 leading-relaxed mb-10">Ngày hội mua sắm cuối tuần. Nhận hỗ trợ tag "VIP PARTNER" trên bản đồ App và thông báo đẩy trực tiếp tới User trong khu vực.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-8 border-t border-white/10">
+                        <div class="p-4 bg-white/10 rounded-2xl">
+                            <p class="text-[9px] font-black text-brand uppercase tracking-widest mb-1">Ưu tiên</p>
+                            <p class="text-sm font-bold text-white">Đẩy Tin 24h</p>
+                        </div>
+                        <div class="p-4 bg-white/10 rounded-2xl">
+                            <p class="text-[9px] font-black text-brand uppercase tracking-widest mb-1">Tình trạng</p>
+                            <p class="text-sm font-bold text-white">Sắp bắt đầu</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full mt-10 py-5 bg-brand text-white rounded-[1.5rem] font-black text-[15px] shadow-xl shadow-brand/40">Bạn Đã Tham Gia ✅</button>
+            </div>
+
+            <!-- Campaign Card 3 -->
+            <div class="campaign-card rounded-[3.5rem] p-10 flex flex-col h-full relative overflow-hidden opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-20 h-20 bg-indigo-500/10 rounded-[2rem] flex items-center justify-center text-indigo-400 text-4xl border border-indigo-500/20 shadow-inner">
+                            <i class="ph-fill ph-sparkle"></i>
+                        </div>
+                        <span class="px-4 py-1.5 bg-gray-500/20 text-gray-400 text-[10px] font-black rounded-full uppercase tracking-widest">Upcoming</span>
+                    </div>
+                    <h4 class="text-2xl font-black text-white mb-4">Lễ Hội Quà Tặng</h4>
+                    <p class="text-gray-500 leading-relaxed mb-10">Tập trung vào dòng sản phẩm E-Gift dành cho khách hàng doanh nghiệp và nhóm người dùng trẻ nhân dịp lễ hội cuối năm.</p>
+                </div>
+                <button class="w-full mt-10 py-5 bg-white/5 text-gray-500 rounded-[1.5rem] font-black text-[15px] cursor-not-allowed border border-white/5">Mở đăng ký vào 01/06</button>
+            </div>
+        </div>
+
+        <!-- Footer Community -->
+        <div class="mt-32 glass-panel rounded-[4rem] p-16 flex flex-col md:flex-row items-center gap-16">
             <div class="flex-1">
-                <h3 class="text-3xl font-black text-gray-900 leading-tight">Cộng đồng Đối tác TapGO <br>vận hành xuất sắc</h3>
-                <p class="text-gray-500 mt-4 text-lg font-medium leading-relaxed">Tham gia các chiến dịch hệ thống không chỉ giúp tăng doanh thu mà còn nâng cao hạng Vendor trên bản đồ TapGO.</p>
-                <div class="flex gap-10 mt-10">
-                    <div class="text-center"><p class="text-3xl font-black text-brand">1,500+</p><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Đối tác lớn</p></div>
-                    <div class="text-center"><p class="text-3xl font-black text-gray-900">4.9/5</p><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Hài lòng đối tác</p></div>
-                    <div class="text-center"><p class="text-3xl font-black text-blue-600">85%</p><p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mt-1">Tỷ lệ quay lại</p></div>
+                <h3 class="text-4xl font-black text-white mb-6">Kết Nối Với Cộng Đồng <br><span class="text-brand">TapGO Elite Partners</span></h3>
+                <p class="text-gray-500 text-lg leading-relaxed">Tham gia vào mạng lưới hơn 1,000+ đối tác cao cấp để cùng chia sẻ kinh nghiệm vận hành và tối ưu hóa doanh thu từ nền tảng TapGO.</p>
+                <div class="flex gap-8 mt-12">
+                    <div class="flex -space-x-4">
+                        <img src="https://i.pravatar.cc/100?u=10" class="w-14 h-14 rounded-full border-4 border-gray-900">
+                        <img src="https://i.pravatar.cc/100?u=11" class="w-14 h-14 rounded-full border-4 border-gray-900">
+                        <img src="https://i.pravatar.cc/100?u=12" class="w-14 h-14 rounded-full border-4 border-gray-900">
+                        <div class="w-14 h-14 rounded-full bg-brand flex items-center justify-center text-white font-black border-4 border-gray-900">+5k</div>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-black text-white">4.8k+</p>
+                        <p class="text-gray-500 font-bold text-sm">Đối tác đang thảo luận</p>
+                    </div>
                 </div>
             </div>
-            <div class="w-full md:w-[450px] space-y-4">
-                <div class="p-5 bg-orange-50 rounded-[2rem] border border-orange-100 flex items-center gap-5 transform hover:-translate-x-4 transition-transform duration-500">
-                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center font-black text-brand border border-orange-100">01</div>
-                    <div class="flex-1"><p class="text-[14px] font-bold text-gray-900">Golden Meat House</p><p class="text-[11px] text-brand font-black">TOP 1 Doanh thu Tháng 4</p></div>
-                    <i class="fas fa-crown text-yellow-400 text-xl"></i>
-                </div>
-                <div class="p-5 bg-gray-50 rounded-[2rem] border border-gray-100 flex items-center gap-5">
-                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center font-black text-gray-400 border border-gray-100">02</div>
-                    <div class="flex-1"><p class="text-[14px] font-bold text-gray-900">Spa Luxury Danang</p><p class="text-[11px] text-gray-500 font-bold">TOP 2 Tương tác E-Gift</p></div>
-                    <i class="fas fa-star text-blue-400 text-lg"></i>
-                </div>
-                <div class="p-5 bg-gray-50 rounded-[2rem] border border-gray-100 flex items-center gap-5">
-                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center font-black text-gray-400 border border-gray-100">03</div>
-                    <div class="flex-1"><p class="text-[14px] font-bold text-gray-900">Mộc Trà Coffee</p><p class="text-[11px] text-gray-500 font-bold">TOP 3 Khách hàng mới</p></div>
+            <div class="w-full md:w-[400px]">
+                <div class="p-8 bg-white/5 rounded-[3rem] border border-white/10 space-y-6">
+                    <p class="text-sm font-bold text-gray-400 uppercase tracking-widest text-center">Tin tức mới nhất</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all cursor-pointer">
+                            <p class="text-brand font-black text-[10px] uppercase">Update</p>
+                            <p class="text-sm font-bold mt-1">Nâng cấp thuật toán đẩy tin AI v2.0</p>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all cursor-pointer">
+                            <p class="text-blue-400 font-black text-[10px] uppercase">Success Story</p>
+                            <p class="text-sm font-bold mt-1">Chuỗi Golden Meat tăng 300% doanh thu...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </main>
+
+    <!-- Global Background Elements -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-brand/10 rounded-full blur-[150px]"></div>
+        <div class="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-indigo-500/10 rounded-full blur-[150px]"></div>
     </div>
+
 </body>
 </html>
