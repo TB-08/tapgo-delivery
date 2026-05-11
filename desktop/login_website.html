@@ -44,7 +44,7 @@
     </style>
 </head>
 
-<body class="bg-gray-900 flex items-center justify-center h-screen w-screen relative overflow-hidden"
+<body class="bg-gray-900 flex items-center justify-center min-h-screen w-full relative overflow-y-auto py-12 lg:py-20"
     x-data="{...getTapgoData(), tabAuth: new URLSearchParams(window.location.search).get('tab') || 'login', showPass: false}">
 
     <!-- Background Decor - Fixed to ensure full coverage -->
