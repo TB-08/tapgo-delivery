@@ -154,10 +154,14 @@
                             <i x-show="sidebarOpen" class="fas fa-chevron-down text-[10px] transition-transform duration-300" :class="openFlashsale ? 'rotate-180' : ''"></i>
                         </a>
                         <div x-show="openFlashsale && sidebarOpen" x-cloak x-transition class="mt-1 ml-9 space-y-1">
+                            <a href="flashsale_vendor.html" target="_blank" @click.stop 
+                                class="block py-2 px-3 rounded-lg text-[13px] transition text-gray-500 hover:text-brand hover:bg-gray-50">
+                                <i class="fas fa-external-link-alt mr-2 opacity-50"></i>Xem bản riêng lẻ
+                            </a>
                             <a href="#" @click.prevent="currentTab = 'flashsale_vendor'" 
                                 class="block py-2 px-3 rounded-lg text-[13px] transition"
                                 :class="currentTab === 'flashsale_vendor' ? 'text-brand font-bold bg-orange-50/50' : 'text-gray-500 hover:text-brand hover:bg-gray-50'">
-                                <i class="fas fa-store-alt mr-2 opacity-50"></i>Flashsale Vendor
+                                <i class="fas fa-store-alt mr-2 opacity-50"></i>Flashsale Vendor (Dashboard)
                             </a>
                             <a href="#" @click.prevent="currentTab = 'flashsale_system'" 
                                 class="block py-2 px-3 rounded-lg text-[13px] transition"
@@ -1108,6 +1112,225 @@
                     </div>
                 </div>
             </div>
+            </div>
+
+            <!-- TAB 4.1: QUẢN LÝ FLASHSALE VENDOR -->
+            <div x-show="currentTab === 'flashsale_vendor'" x-transition class="space-y-8 animate__animated animate__fadeIn">
+                <!-- Quick Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <!-- Stat 1 -->
+                    <div class="bg-white p-6 rounded-[2.5rem] border border-gray-100 shadow-sm group hover:border-brand/20 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-brand text-2xl border border-orange-100 group-hover:bg-brand group-hover:text-white transition-all duration-500"><i class="fas fa-bolt"></i></div>
+                            <span class="text-[11px] font-bold text-green-500 bg-green-50 px-2 py-1 rounded-lg">Active</span>
+                        </div>
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Đang diễn ra</p>
+                        <h3 class="text-3xl font-bold text-gray-900 mt-1">03 <span class="text-sm text-gray-400 font-medium">Chiến dịch</span></h3>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="bg-white p-6 rounded-[2.5rem] border border-gray-100 shadow-sm group hover:border-blue-200 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 text-2xl border border-blue-100 group-hover:bg-blue-500 group-hover:text-white transition-all duration-500"><i class="fas fa-shopping-cart"></i></div>
+                            <span class="text-[11px] font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-lg">+15% vs hôm qua</span>
+                        </div>
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Voucher đã bán</p>
+                        <h3 class="text-3xl font-bold text-gray-900 mt-1">1,240 <span class="text-sm text-gray-400 font-medium">Mã</span></h3>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="bg-white p-6 rounded-[2.5rem] border border-gray-100 shadow-sm group hover:border-purple-200 transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500 text-2xl border border-purple-100 group-hover:bg-purple-500 group-hover:text-white transition-all duration-500"><i class="fas fa-eye"></i></div>
+                            <span class="text-[11px] font-bold text-purple-500 bg-purple-50 px-2 py-1 rounded-lg">Hot Heat</span>
+                        </div>
+                        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Lượt tiếp cận</p>
+                        <h3 class="text-3xl font-bold text-gray-900 mt-1">45.2k <span class="text-sm text-gray-400 font-medium">User</span></h3>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="bg-gray-900 p-6 rounded-[2.5rem] relative overflow-hidden group shadow-xl">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand/20 blur-3xl rounded-full"></div>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">Doanh thu dự kiến</p>
+                                <h3 class="text-2xl font-bold text-white tracking-tight">85.000.000đ</h3>
+                            </div>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="text-[10px] font-bold text-brand bg-brand/10 px-2 py-1 rounded-lg border border-brand/20 uppercase tracking-widest">TapGO AI Forecast</span>
+                                <i class="fas fa-chart-line text-brand"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="bg-white rounded-[3rem] border border-gray-100 shadow-sm overflow-hidden mb-10">
+                    <div class="px-10 py-8 border-b border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6 bg-gray-50/20">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">Danh sách chương trình nội bộ</h2>
+                            <p class="text-gray-500 mt-1 font-medium">Theo dõi và tối ưu hóa hiệu quả từng khung giờ.</p>
+                        </div>
+                        <div class="flex bg-gray-100 p-1 rounded-2xl border border-gray-200">
+                            <button class="px-6 py-2.5 rounded-xl text-[13px] font-bold bg-white text-gray-900 shadow-sm">Đang chạy (3)</button>
+                            <button class="px-6 py-2.5 rounded-xl text-[13px] font-bold text-gray-500 hover:text-gray-900 transition">Sắp diễn ra</button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] border-b border-gray-50">
+                                    <th class="px-6 py-6">Thông tin Deal</th>
+                                    <th class="px-6 py-6">Khung giờ</th>
+                                    <th class="px-6 py-6">Ưu đãi Flash</th>
+                                    <th class="px-6 py-6">Tiến độ bán</th>
+                                    <th class="px-6 py-6 text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-50">
+                                <!-- Row 1 -->
+                                <tr class="group hover:bg-gray-50/50 transition-all duration-300">
+                                    <td class="px-6 py-8">
+                                        <div class="flex items-center gap-5">
+                                            <div class="w-20 h-20 rounded-[1.5rem] overflow-hidden border-2 border-gray-100 group-hover:border-brand/30 transition-all">
+                                                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=200" class="w-full h-full object-cover">
+                                            </div>
+                                            <div>
+                                                <p class="text-[15px] font-extrabold text-gray-900 group-hover:text-brand transition-colors">Combo Nướng Lẩu VIP</p>
+                                                <p class="text-[11px] text-gray-400 mt-1 font-bold"><i class="fas fa-tag mr-1 opacity-50"></i>Ẩm thực Nhật Bản</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-8">
+                                        <div class="space-y-1.5">
+                                            <div class="flex items-center gap-2 text-[13px] font-bold text-gray-700">
+                                                <i class="far fa-clock text-brand"></i>
+                                                Còn 01:24:55
+                                            </div>
+                                            <p class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Hôm nay, 17:00 - 19:00</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-8">
+                                        <div class="space-y-1">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-xl font-black text-red-500">199k</span>
+                                                <span class="text-[12px] text-gray-300 line-through font-bold">450k</span>
+                                            </div>
+                                            <span class="inline-block px-2 py-0.5 bg-red-50 text-red-500 text-[10px] font-bold rounded-md border border-red-100">-55% Giảm sâu</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-8">
+                                        <div class="w-40">
+                                            <div class="flex justify-between items-end mb-2">
+                                                <p class="text-[13px] font-bold text-gray-900">82 <span class="text-[11px] text-gray-400 font-medium">/ 100</span></p>
+                                                <span class="text-[11px] font-black text-brand">82%</span>
+                                            </div>
+                                            <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                                                <div class="h-full bg-gradient-to-r from-[#F48133] to-[#FFAC70] rounded-full" style="width: 82%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-8 text-right">
+                                        <div class="flex justify-end gap-2">
+                                            <button class="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-brand hover:text-white transition-all flex items-center justify-center"><i class="fas fa-chart-line text-sm"></i></button>
+                                            <button class="w-10 h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-900 hover:text-white transition-all flex items-center justify-center"><i class="fas fa-ellipsis-h text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- AI Recommendation Section -->
+                <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3.5rem] p-12 relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 p-20 opacity-10">
+                        <i class="fas fa-brain text-[120px] text-brand"></i>
+                    </div>
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7">
+                            <h2 class="text-4xl font-bold text-white leading-tight">Dự báo hiệu quả từ <span class="text-brand">TapGO AI</span></h2>
+                            <p class="text-gray-400 mt-6 text-lg leading-relaxed">Hệ thống phân tích dự kiến lượng khách sẽ tăng đột biến <span class="text-brand font-black">40%</span> vào khung giờ tối cuối tuần này.</p>
+                            <div class="flex gap-4 mt-10">
+                                <div class="bg-white/5 border border-white/10 p-5 rounded-3xl backdrop-blur-xl">
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Khung giờ vàng</p>
+                                    <p class="text-xl font-bold text-white">19:30 - 21:30</p>
+                                </div>
+                                <div class="bg-white/5 border border-white/10 p-5 rounded-3xl backdrop-blur-xl">
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Mức giảm đề xuất</p>
+                                    <p class="text-xl font-bold text-brand">45% - 50%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 flex flex-col gap-4">
+                            <button class="p-6 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl hover:bg-white/10 transition-all text-left">
+                                <h4 class="text-white font-bold">Tự động cấu hình Flashsale</h4>
+                                <p class="text-gray-400 text-sm mt-1">Để AI tối ưu hóa tỷ lệ chuyển đổi cho bạn.</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4.2: FLASHSALE HỆ THỐNG -->
+            <div x-show="currentTab === 'flashsale_system'" x-transition class="space-y-8 animate__animated animate__fadeIn">
+                <!-- Featured Mega Campaign -->
+                <div class="relative rounded-[4rem] overflow-hidden min-h-[400px] flex items-center p-12 md:p-16 group shadow-2xl bg-gray-950">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c170db06?q=80&w=1200" class="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-[3s]">
+                        <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/80 to-transparent"></div>
+                    </div>
+                    
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-brand text-white text-[11px] font-black rounded-full mb-8 shadow-xl uppercase tracking-[0.2em] animate-pulse">Mega Event 2026</span>
+                            <h2 class="text-5xl font-black text-white leading-tight mb-6">Mùa Hè Rực Rỡ <br><span class="text-brand">TapGO Đà Nẵng</span></h2>
+                            <p class="text-gray-300 text-lg leading-relaxed mb-10">Chiến dịch lớn nhất năm dành cho các đối tác tại khu vực Đà Nẵng. Tiếp cận hơn <span class="text-white font-bold">500,000 khách du lịch</span>.</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-5">
+                                <button class="px-10 py-5 bg-brand text-white rounded-[2rem] font-black text-lg shadow-2xl shadow-brand/40 hover:bg-brand-dark transition-all">Tham gia ngay</button>
+                                <button class="px-10 py-5 bg-white/10 backdrop-blur-md text-white rounded-[2rem] font-black text-lg border border-white/10">Tìm hiểu thêm</button>
+                            </div>
+                        </div>
+                        <div class="hidden lg:block">
+                            <div class="bg-white/5 backdrop-blur-2xl border border-white/10 p-10 rounded-[3rem] shadow-2xl">
+                                <div class="space-y-8 text-white">
+                                    <div class="flex items-center gap-5">
+                                        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand text-2xl border border-white/10"><i class="fas fa-bullhorn"></i></div>
+                                        <div><h4 class="font-bold text-lg">Banner App VIP</h4><p class="text-gray-400 text-sm">Hiển thị đầu trang chủ App.</p></div>
+                                    </div>
+                                    <div class="flex items-center gap-5">
+                                        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-blue-400 text-2xl border border-white/10"><i class="fas fa-coins"></i></div>
+                                        <div><h4 class="font-bold text-lg">Trợ giá hệ thống</h4><p class="text-gray-400 text-sm">TapGO bù giá trực tiếp trên mỗi deal.</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Campaigns -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <!-- Campaign Card 1 -->
+                    <div class="bg-white rounded-[3rem] border border-gray-100 p-10 shadow-sm hover:shadow-xl transition-all group">
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="w-16 h-16 bg-red-50 rounded-[1.5rem] flex items-center justify-center text-red-500 text-3xl border border-red-100 shadow-sm"><i class="fas fa-fire-alt"></i></div>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-500 text-[10px] font-black rounded-full uppercase tracking-widest">Ẩm thực</span>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-gray-900 mb-4 group-hover:text-brand transition-colors">Bữa Trưa 1K</h4>
+                        <p class="text-gray-500 text-[15px] leading-relaxed mb-8">Tăng trưởng khách hàng mới đột phá bằng cách tham gia chuỗi deal 1K được TapGO tài trợ.</p>
+                        <button class="w-full py-4 bg-gray-900 text-white rounded-2xl font-black text-[14px] hover:bg-brand transition-all">Đăng ký ngay</button>
+                    </div>
+
+                    <!-- Campaign Card 2 -->
+                    <div class="bg-white rounded-[3rem] border border-gray-100 p-10 shadow-sm hover:shadow-xl transition-all group border-brand/20">
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="w-16 h-16 bg-purple-50 rounded-[1.5rem] flex items-center justify-center text-purple-500 text-3xl border border-purple-100 shadow-sm"><i class="fas fa-bolt"></i></div>
+                            <span class="px-3 py-1 bg-brand text-white text-[10px] font-black rounded-full uppercase tracking-widest shadow-lg shadow-brand/20">Hot</span>
+                        </div>
+                        <h4 class="text-2xl font-extrabold text-gray-900 mb-4 group-hover:text-brand transition-colors">Happy Weekend 50%</h4>
+                        <p class="text-gray-500 text-[15px] leading-relaxed mb-8">Ngày hội mua sắm cuối tuần. Nhận hỗ trợ tag "VIP PARTNER" trên bản đồ App.</p>
+                        <button class="w-full py-4 bg-brand text-white rounded-2xl font-black text-[14px] shadow-xl shadow-brand/20 hover:bg-brand-dark transition-all">Bạn đã tham gia ✅</button>
+                    </div>
+                </div>
             </div>
 
             <!-- TAB 5: REVIEWS -->
